@@ -1,8 +1,14 @@
 # Algorithms projects 3 & 4
 From the presentation description: "Using the built-in quicksort function of C to sort the input integers and then identify the kth smallest element among them." 
+
 Do not write your own sorting algorithm. C has its own built-in quicksort:
+
 https://www.geeksforgeeks.org/comparator-function-of-qsort-in-c/
+
 This can be used to sort arrays. then its just a simple matter of returning first element in the array.
+
+
+
 
 Current Priorites: 
  
