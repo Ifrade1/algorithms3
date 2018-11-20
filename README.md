@@ -12,7 +12,7 @@ This can be used to sort arrays. then its just a simple matter of returning firs
 
 Current Priorites: 
  
-  -Please write a simple file testing the quicksort function. I don't think you need to write the function, it should be in the c standard library.(I added a quick sort program and text file in the quicksort.c branch); 
+  -Please write a simple file testing the quicksort function. I don't think you need to write the function, it should be in the c standard library.(I added a quick sort program and text file in the quicksort.c branch; need to add reading text file implementation); 
   
   
   -need to figure out how to compile and run with the text file
