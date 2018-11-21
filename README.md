@@ -17,8 +17,11 @@ Current Priorites:
   
   -need to figure out how to compile and run with the text file
  -need to implement fidning the kth smallest integer from a text file
-  -create a PA2.c file with a main function
+  -create a PA2.c file with a main function 
+  -need to add implementation of reading integers from input/text file
  
-  -create a makefile (use the previous makefile and edit PA1 to PA1.
-
+  -create a makefile (use the previous makefile and edit PA1 to PA1. DONE
+  To compile makefile:
+  make
+./kmin
 
