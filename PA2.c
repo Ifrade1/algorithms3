@@ -36,26 +36,20 @@ int main(){
   int num;
   //int val[] = {25, 12,16,23, 13, 10};//sample array for testing, will replace with reading integers from input                                        
   int n;//size of array from input                                                                                                                      
-  scanf("%d %d",&n,&k);
-  int val[n];
+  scanf("%d %d",&n,&k);//scans size of array and k
+  int val[n];//array for storing integers
   for(int i = 0; i < n-1; i++){
-    scanf("%d\n", &num);//works with scanf("%d", &num);                                                                                                 
+    scanf("%d\n", &num);//reads integers line by line                                                                                                
     val[i] = num;
   }
   scanf("%d", &num);
   val[n-1] = num;
   
-  //for(int i = 0; i < n; i++){
-  //  printf("%d\n", val[i]);
-  //}
-
-  //int size = sizeof(val)/sizeof(val[0]);//size of sample array for testing                                                                            
+                                                                            
   heapsort(val, n);//calls to heap sort                                                                                                                 
-  for(int i = 0; i < n; i++){
-   printf("%d\n", val[i]);//prints the integers in ascending order, use it for debugging                                                               
-  }
-  printf("Insert a k: \n"); //test for reading input                                                                                                    
-  scanf("%d %d",&n,&k); // scans size of array(n) and k
+  //for(int i = 0; i < n; i++){
+   //printf("%d\n", val[i]);//prints the integers in ascending order, use it for debugging                                                               
+  //}                                                                                                   
  if (k != 0){
   printf("%d\n", val[k-1]);//prints integer at the kth location
  }
