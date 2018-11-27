@@ -59,7 +59,4 @@ int main(){
  if (k != 0){
   printf("%d\n", val[k-1]);//prints integer at the kth location
  }
-  else  if (k == 0){
-  printf("%d\n", val[k]);//prints integer at the kth location
- }
 }
