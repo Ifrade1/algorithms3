@@ -15,12 +15,9 @@ Current Priorites:
   -Please write a simple file testing the quicksort function. I don't think you need to write the function, it should be in the c standard library.(I added a quick sort program and text file in the quicksort.c branch; need to add reading text file implementation); 
   
   
-  -need to figure out how to compile and run with the text file
- -need to implement fidning the kth smallest integer from a text file
-  -create a PA2.c file with a main function 
-  -need to add implementation of reading integers from input/text file
+ PA2.c works, except it requires you to input n+1 integers until it sorts the array and prints the k element
  
-  -create a makefile (use the previous makefile and edit PA1 to PA1. DONE
+  -create a makefile (use the previous makefile and edit PA1 to PA1. DONE; makefile works; do not change!
   To compile makefile:
   make
 ./kmin
