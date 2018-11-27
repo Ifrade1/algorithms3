@@ -48,12 +48,12 @@ int main(){
 
   //int size = sizeof(val)/sizeof(val[0]);//size of sample array for testing                                                                            
   heapsort(val, n);//calls to heap sort                                                                                                                 
- // for(int i = 0; i < n; i++){
-   // printf("%d\n", val[i]);//prints the integers in ascending order, use it for debugging                                                               
-  //}
-  //printf("Insert a k: \n"); test for reading input                                                                                                    
-  //scanf("%d %d",&n,&k); // scans size of array(n) and k
- if (n != 0){
+  for(int i = 0; i < n; i++){
+   printf("%d\n", val[i]);//prints the integers in ascending order, use it for debugging                                                               
+  }
+  printf("Insert a k: \n"); //test for reading input                                                                                                    
+  scanf("%d %d",&n,&k); // scans size of array(n) and k
+ if (k != 0){
   printf("%d\n", val[k-1]);//prints integer at the kth location
  }
 }
