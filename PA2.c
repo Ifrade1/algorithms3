@@ -38,13 +38,16 @@ int main(){
   int n;//size of array from input                                                                                                                      
   scanf("%d %d",&n,&k);
   int val[n];
-  for(int i = 0; i <n ; i++){
+  for(int i = 0; i < n-1; i++){
     scanf("%d\n", &num);//works with scanf("%d", &num);                                                                                                 
     val[i] = num;
   }
-  for(int i = 0; i < n; i++){
-    printf("%d\n", val[i]);
-  }
+  scanf("%d", &num);
+  val[n-1] = num;
+  
+  //for(int i = 0; i < n; i++){
+  //  printf("%d\n", val[i]);
+  //}
 
   //int size = sizeof(val)/sizeof(val[0]);//size of sample array for testing                                                                            
   heapsort(val, n);//calls to heap sort                                                                                                                 
