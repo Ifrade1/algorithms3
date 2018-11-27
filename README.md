@@ -15,7 +15,7 @@ Current Priorites:
   -Please write a simple file testing the quicksort function. I don't think you need to write the function, it should be in the c standard library.(I added a quick sort program and text file in the quicksort.c branch; need to add reading text file implementation); 
   
   
- PA2.c works, except it requires you to input n+1 integers until it sorts the array and prints the k element
+ PA2.c works now. changed all the int variables to long to include integers within the signed 64-bit integer range
  
   -create a makefile (use the previous makefile and edit PA1 to PA1. DONE; makefile works; do not change!
   To compile makefile:
