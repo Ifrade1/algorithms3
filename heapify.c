@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <time.h>
 
 void floydHeapify(long floyd[], long size, long m){
   long max = m;//max element is root                                                                                                                                                                                                                                                             
@@ -35,9 +36,12 @@ int main(){
   long k;//reading kth smallest integer                                                                                                                                                                                                                                                          
   long num;                                                                                                                                                                                 
   long n = 1000000;//size of array from input
+  clock_t starttime, endtime;
+  double execution_time;  
   printf("Input a k: \n");  
   scanf("%ld", &k);//scans size of the array and k                                                                                                                                                                                                                                         
   long val[n];//array for storing integer
+  starttime = clock();  
   FILE *input = fopen("InputMil.txt", "r");//text file  
    for(long i = 0; i < n-1; i++){
     fscanf(input,"%ld\n", &num);//reads integers line by line;                                                                                                                                                                                                                                          
@@ -54,6 +58,8 @@ int main(){
   if (k != 0){
     printf("%ld\n", val[k-1]);//prints integer at the kth location                                                                                                                                                                                                                               
   }
+  endtime = clock();
+  execution_time = ((double)(endtime - starttime))/ CLOCKS_PER_SEC;
+  printf("Heapify execution time: %lf seconds \n", execution_time);
   fclose(input);
-  return(0);
 }
