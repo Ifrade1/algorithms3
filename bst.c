@@ -53,14 +53,16 @@ if (tree == NULL){
             tree = tree->ide_val;
             }
              tree->ide_val = newLeaf(item);
-  }
 else if (item < tree->val)
     {
-      tree->left_child = insert(tree->left_child,item);
+    lchild = insert(tree->left_child, item);
+    tree->left_child = lchild;
+    lchild->parent = tree;
     }
     else if (item > tree->val)
-    {
-    tree->right_child = insert(tree->right_child, item);
+    rchild = insert(tree->right_child, item);
+    tree->right_child = rchild;
+    rchild->parent = tree;
     }
 return tree;
 }
