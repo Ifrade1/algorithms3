@@ -69,56 +69,7 @@ else if (item < tree->val)
 return tree;
 }
 //delete
-int deletey(struct Tree *tree, int item){
-       struct Tree *temp = tree;
-       struct Tree *parent = tree;
-       struct Tree *min = tree;//get smallest node in right subtree
-       int del_num;
-        if (tree == NULL) return 0;
-        if(item < tree->val){
-            tree = search(tree->left_child, item);//key is in the left subtree
-        }
-	else if(item > tree->val){
-		tree= search(tree->right_child, item);//key is in right subtree
-        }
-    if (item == tree->val){//nodes have the same key
-        del_num = 1;
-        parent = tree->parent;
-	    temp = tree;
-	    while (temp->ide_val != NULL){
-            tree = temp;
-            free(tree->ide_val);
-             temp= temp->ide_val;
-            del_num++;
-	    }
-	    if((tree->left_child)== NULL && (tree->right_child == NULL)){
-                 tree= NULL;
-                free(tree);
-                return del_num;
-	    }
-		if((tree->left_child)== NULL && (tree->right_child != NULL)){
-		 temp = tree->right_child;
-		tree->parent->right_child= temp;
-			free(tree);
-		}
-		else if((tree->right_child == NULL) && (tree->left_child != NULL)){
-		temp = tree->left_child;
-		tree->parent->left_child = temp;
-			free(tree);
-			return del_num;
-		}
-		else if(tree->right_child != NULL && tree->left_child != NULL){
-            min = tree->left_child;
-		while(min->right_child != NULL){
-			min = min->right_child;
-		}
-		tree->val = min->val;//copies contents to current node
-		(min->parent)->right_child = min->left_child;
-		free(min);
-		}
-    }
-		 return del_num;
-	}
+
  struct Tree *minimum(struct Tree *tree){
     struct Tree *min = tree;
     if (min == NULL) return NULL;
