@@ -8,7 +8,7 @@ struct Tree
     struct Tree *left_child, *right_child,*ide_val, *parent; //ide_val is pointer list to values identical to it
 };
 //insert
-struct Tree *search(struct Tree *leaf, long item) {
+struct Tree *search(struct Tree *leaf, int item) {
     if (leaf == NULL) {
         return NULL;
     }
@@ -22,7 +22,7 @@ struct Tree *search(struct Tree *leaf, long item) {
     return search(leaf->right_child, item);
     }
 }
-struct Tree *newLeaf(long x){
+struct Tree *newLeaf(int x){
         struct Tree *tempy =  malloc(sizeof(struct Tree));
     tempy->val = x;
     tempy->left_child = NULL;
@@ -31,16 +31,16 @@ struct Tree *newLeaf(long x){
     tempy->parent = NULL;
     return tempy;
 }
-long height(struct Tree* root){
+int height(struct Tree* root){
     if (root == NULL) return -1;
     else {
-        long Lheight = height(root->left_child);
-        long Rheight = height(root->right_child);
+        int Lheight = height(root->left_child);
+       int Rheight = height(root->right_child);
         if (Lheight > Rheight) return(Lheight+1);
         else return(Rheight+1);
     }
 }
-struct Tree* insert(struct Tree *tree, long item){
+struct Tree* insert(struct Tree *tree, int item){
     struct Tree *lchild = tree;
     struct Tree *rchild = tree;
     /* If the tree is empty, return a new Node */
@@ -84,7 +84,7 @@ return tree;
     }
     return max;
 }
-long pred(struct Tree* tree, long item){
+int pred(struct Tree* tree, int item){
     struct Tree *pre = tree;
     struct Tree *parent_pre = tree;
       pre = search(tree, item);
@@ -104,7 +104,7 @@ long pred(struct Tree* tree, long item){
 }
 
 //successor function
-long succ(struct Tree *tree, long item){
+int succ(struct Tree *tree, int item){
        struct Tree *suc = tree;
     suc = search(tree, item);
     if (suc == NULL) return 0;
@@ -143,20 +143,21 @@ long succ(struct Tree *tree, long item){
 
 //predecessor function
 int main() {
-     long  n; //this is the number that has to be saved into the tree
-     long min = 0;
-     long successor;
-     long numInsertions = 0;
+     int  n; //this is the number that has to be saved into the tree
+     int min = 0;
+     int successor;
+     int numInsertions = 0;
     struct Tree *root= NULL;
-    long  res = 0;
-     long  k = 10;
+    int  res = 0;
+     int k = 10;
       FILE *input = fopen("InputMil[2171].txt", "r");
-      fscanf(input, "%ld\n", &k);
+      fscanf(input, "%d\n", &k);
       while (res < 1000000){
-	fscanf(input, "%ld\n", &n);
+	fscanf(input, "%d\n", &n);
              numInsertions++;
                     if (root == NULL){
                         root = insert(root, n);
+			     printf("%d\n", root->val);
                     }
                     else if (root!= NULL){
                         insert(root, n);
@@ -169,13 +170,13 @@ int main() {
 		           }
 		  else{
                     min =minimum(root)->val;
-		    printf("%ld\n", min);
-		     for (long i = 0; i < k; i++){
+		    printf("%d\n", min);
+		     for (int i = 0; i < k; i++){
 		       successor = succ(root, min);
 		       min = successor;
-		       printf("%ld\n", i);
+		       printf("%d\n", i);
 		    }
 		    }
-            printf("%ld\n", min);
+            printf("%d\n", min);
      return 0;
     };
