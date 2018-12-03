@@ -170,7 +170,7 @@ clock_t starttime, endtime;
 		    max = maximum(root)->val;
                     printf("min is %d\n", successor);
 		    printf("max is %d\n", max);
-                    for (i = 0; i < k; i++){
+                    for (i = 2; i < k; i++){
 		      		//   printf("testx %d\n", min);
                          successor = succ(root, successor);
 			 //  min = successor;
