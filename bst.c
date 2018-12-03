@@ -19,7 +19,7 @@ struct Tree *search(struct Tree *leaf, int item) {
     else if (leaf->val > item) {
         return search(leaf->left_child, item);
     }
-    else if (leaf->val < item){
+ m    else if (leaf->val < item){
         return search(leaf->right_child, item);
     }
 }
@@ -52,9 +52,9 @@ if (tree == NULL){
   else if(item == (tree->val)){
             while (tree->ide_val != NULL) {
             tree = tree->ide_val;
-            }
-             tree->ide_val = newLeaf(item);
-  }
+	    }
+	    tree->ide_val = newLeaf(item);
+	     }
 else if (item < tree->val)
     {
    lchild = insert(tree->left_child, item);
@@ -109,10 +109,10 @@ int pred(struct Tree* tree, int item){
 
 //successor function
 int succ(struct Tree *tree, int item){
-       struct Tree *suc = search(tree, item);
+  struct Tree *suc = search(tree, item);
     if (tree == NULL) return 0;
-    if (maximum(tree)->val == item){
-        return 0;
+    if (maximum(tree)->val == suc->val){
+      return 0;
         }
 	if(suc->right_child != NULL){
             suc= suc->right_child; //successor is the node with the minimum key value in right subtree
@@ -123,11 +123,11 @@ int succ(struct Tree *tree, int item){
                 return suc->val;
             }
 	}
-
-	struct Tree *temp= suc->ide_val;
-	if (temp !=NULL) {//successor is the node who is the left child of the parent pointer
-		suc = temp;
-		return suc->val;
+	struct Tree *temp= suc;
+	if (temp->ide_val !=NULL) {//successor is the node who is the left child of the parent pointer
+	  temp = temp->ide_val;
+	  suc->ide_val = temp->ide_val;
+	  free(temp);
 	}
 	else
     {
@@ -145,10 +145,10 @@ int main() {
 clock_t starttime, endtime;
   double execution_time;
      int n; //this is the number that has to be saved into the tree
-     int min;
+     int min = 0;
      int heightTree;
      int predecessor;
-     int successor;
+     int successor =0;
      int numInsertions = 0;
     struct Tree *root = NULL;
      int k;
@@ -170,11 +170,11 @@ clock_t starttime, endtime;
                 else{
                     min = minimum(root)->val;
                     printf("min is %d\n", min);
-                    for (int i = 0; i < k; i++){
-                      //  printf("testx %d\n", min);
+                    for (i = 0; i < k; i++){
+	;		   printf("testx %d\n", min);
                          successor = succ(root, min);
                          min = successor;
-                       //  printf("testy %d\n", min);
+			 printf("testy %d\n", min);
                    }
                      printf("kmin is %d\n", min);
                       endtime = clock();
