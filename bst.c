@@ -4,7 +4,7 @@
 #include<string.h>
 struct Tree
 {
-    long val;
+    int val;
     struct Tree *left_child, *right_child,*ide_val, *parent; //ide_val is pointer list to values identical to it
 };
 //insert
@@ -18,8 +18,8 @@ struct Tree *search(struct Tree *leaf, int item) {
     else if (leaf->val > item) {
         return search(leaf->left_child, item);
     }
-    else if (leaf->val > item){
-    return search(leaf->right_child, item);
+    else if (leaf->val < item){
+        return search(leaf->right_child, item);
     }
 }
 struct Tree *newLeaf(int x){
@@ -35,7 +35,7 @@ int height(struct Tree* root){
     if (root == NULL) return -1;
     else {
         int Lheight = height(root->left_child);
-       int Rheight = height(root->right_child);
+        int Rheight = height(root->right_child);
         if (Lheight > Rheight) return(Lheight+1);
         else return(Rheight+1);
     }
@@ -53,14 +53,17 @@ if (tree == NULL){
             tree = tree->ide_val;
             }
              tree->ide_val = newLeaf(item);
+  }
 else if (item < tree->val)
     {
-    lchild = insert(tree->left_child, item);
+   lchild = insert(tree->left_child, item);
     tree->left_child = lchild;
     lchild->parent = tree;
     }
     else if (item > tree->val)
-    rchild = insert(tree->right_child, item);
+    {
+
+   rchild = insert(tree->right_child, item);
     tree->right_child = rchild;
     rchild->parent = tree;
     }
@@ -105,34 +108,30 @@ int pred(struct Tree* tree, int item){
 
 //successor function
 int succ(struct Tree *tree, int item){
-       struct Tree *suc = tree;
-    suc = search(tree, item);
-    if (suc == NULL) return 0;
+       struct Tree *suc = search(tree, item);
+    if (tree == NULL) return 0;
     if (maximum(tree)->val == item){
         return 0;
         }
-	if(suc->right_child != NULL && (suc->right_child)->left_child != NULL){
+	if(suc->right_child != NULL){
             suc= suc->right_child; //successor is the node with the minimum key value in right subtree
-		return (minimum(suc->left_child))->val;
+            if (suc->left_child != NULL){
+                return minimum(suc)->val;
+            }
+            else {
+                return suc->val;
+            }
 	}
-	else if(suc->right_child != NULL && (suc->right_child)->left_child == NULL){
-            suc = suc->right_child; //successor is the node with the minimum key value in right subtree
-            return suc->val;
-	}
-	if (suc->ide_val != NULL){
-	  struct Tree* temp = suc->ide_val;
-	while (temp->ide_val !=NULL) {//successor is the node who is the left child of the parent pointer
-	  temp = temp->ide_val;
-		  }
+
+	struct Tree *temp= suc->ide_val;
+	if (temp !=NULL) {//successor is the node who is the left child of the parent pointer
+		suc = temp;
 		return suc->val;
 	}
 	else
     {
         struct Tree* parent_suc = suc->parent;// find the predecessor of the item
-	if (suc == parent_suc->left_child){
-	  return parent_suc->val;
-	}
-	while((parent_suc !=NULL) && (suc == parent_suc->right_child)){
+        while((parent_suc !=NULL) && (suc == parent_suc->right_child)){
             suc = parent_suc;
             parent_suc = parent_suc->parent;
         }
@@ -140,43 +139,69 @@ int succ(struct Tree *tree, int item){
     }
 	return suc->val;
 }
+int succ2(struct Tree *root, int item){
+    struct Tree *leaf = search(root, item);
+     struct Tree *successor = NULL;
+    struct Tree *current  = root;
+    while(current->val != leaf->val){
+        /* If node value is greater than the node which are looking for, then go to left sub tree
+        Also when we move left, update the successor pointer to keep track of lst left turn */
+        if(current->val > leaf->val){
+            successor = current;
+            current= current->left_child;
+        }
+        /* Else take right turn and no need to update successor pointer */
+        else
+            current = (current->right_child);
+    }
+    /*Once we reached at the node for which inorder successor is to be found,
+    check if it has right sub tree, if yes then find the minimum in that right sub tree and return taht node
+    Else last left turn taken node is already stored in successor pointer and will be returned*/
+  if(leaf->right_child != NULL){
+            successor= leaf->right_child; //successor is the node with the minimum key value in right subtree
+            if (successor->left_child != NULL){
+                return minimum(successor)->val;
+            }
+            return successor->val;
+            }
 
+    return successor->val;
+}
 //predecessor function
 int main() {
-     int  n; //this is the number that has to be saved into the tree
-     int min = 0;
+     int n; //this is the number that has to be saved into the tree
+     int min;
+     int heightTree;
+     int predecessor;
      int successor;
      int numInsertions = 0;
-    struct Tree *root= NULL;
-    int  res = 0;
-     int k = 10;
-      FILE *input = fopen("InputMil[2171].txt", "r");
-      fscanf(input, "%d\n", &k);
-      while (res < 1000000){
-	fscanf(input, "%d\n", &n);
+    struct Tree *root = NULL;
+     int k;
+     int i;
+    char input[100];
+    scanf("%d/n",&k);//scans size of the array and k
+     while(scanf("%d", &n) !=EOF){
              numInsertions++;
                     if (root == NULL){
                         root = insert(root, n);
-			     printf("%d\n", root->val);
                     }
                     else if (root!= NULL){
                         insert(root, n);
-                    }
-		    res++;
-      }
-           printf("The number of insertions is %ld\n", numInsertions);
-	   if (minimum(root)== NULL){
+                    }}
+           printf("The number of insertions is %d\n", numInsertions);
+           if (minimum(root)== NULL){
                     printf("%d\n", 0);
-		           }
-		  else{
-                    min =minimum(root)->val;
-		    printf("%d\n", min);
-		     for (int i = 0; i < k; i++){
-		       successor = succ(root, min);
-		       min = successor;
-		       printf("%d\n", i);
-		    }
-		    }
-            printf("%d\n", min);
+                    }
+                else{
+                    min = minimum(root)->val;
+                    printf("min is %d\n", min);
+                    for (int i = 0; i < k; i++){
+                        printf("testx %d\n", min);
+                         successor = succ(root, min);
+                         min = successor;
+                         printf("testy %d\n", min);
+                   }
+                     printf("kmin is %d\n", min);
+                }
      return 0;
-    };
+};
