@@ -85,6 +85,7 @@ return tree;
     }
     return max;
  }
+/*
 int pred(struct Tree* tree, int item){
     struct Tree *pre = tree;
     struct Tree *parent_pre = tree;
@@ -104,7 +105,7 @@ int pred(struct Tree* tree, int item){
     //   } 
     return (pre)->val;
 }
-
+*/
 //successor function
 int succ(struct Tree *tree, int item){
   struct Tree *suc = search(tree, item);
@@ -142,43 +143,39 @@ int main() {
 clock_t starttime, endtime;
   double execution_time;
      int n; //this is the number that has to be saved into the tree
-     int min = 0;
-     int max = 0;
-     int heightTree;
-     int predecessor;
+     //     int min = 0;
+     // int max = 0;
      int successor =0;
-     int numInsertions = 0;
     struct Tree *root = NULL;
      int k;
      int i;
      starttime = clock();
     scanf("%d/n",&k);//scans size of the array and k
      while(scanf("%d", &n) !=EOF){
-             numInsertions++;
+            
                     if (root == NULL){
                         root = insert(root, n);
                     }
                     else if (root!= NULL){
                         insert(root, n);
                     }}
-           printf("The number of insertions is %d\n", numInsertions);
-           if (minimum(root)== NULL || maximum(root) == NULL){
+     //  printf("The number of insertions is %d\n", numInsertions);
+           if (minimum(root)== NULL){
                     printf("%d\n", 0);
                     }
                 else{            
 		    successor = minimum(root)->val;
-		    max = maximum(root)->val;
-                    printf("min is %d\n", successor);
-		    printf("max is %d\n", max);
-                    for (i = 2; i < k; i++){
-		      		//   printf("testx %d\n", min);
+		    // max = maximum(root)->val;
+		    // printf("min is %d\n", successor);
+		    // printf("max is %d\n", max);
+                    for (i = 2; i < k; i++){		      		
                          successor = succ(root, successor);
 			 //  min = successor;
-			 	 printf("testy %d\n", successor);
-			 	 printf("k %d\n", i);
-			   if (successor == 0){
-			     i = k-1;
-			   }
+			 // 	 printf("testy %d\n", successor);
+			 // 	 printf("k %d\n", i);
+			 // if (successor == 0){
+			 //  i = k-1;
+			 //  }
                    }
                      printf("kmin is %d\n", successor);
                       endtime = clock();
