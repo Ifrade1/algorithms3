@@ -47,8 +47,8 @@ int main(){
     fscanf(input,"%ld\n", &num);//reads integers line by line;                                                                                                                                                                                                                                          
      val[i] = num;
   }
-  scanf("%ld", &num);//reads last integer to store in array
-  val[n-1] = num;
+  //scanf("%ld", &num);//reads last integer to store in array
+  //val[n-1] = num;
 
   heapsort(val, n);//calls to heap sort                                                                                                                                                                                                                                                          
   /* for(long i = 0; i < n; i++){                                                                                                                                                                                                                                                                
